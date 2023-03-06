@@ -1,6 +1,9 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -17,6 +20,7 @@ const HomeScreen = ({navigation}) => {
       
       <View style={styles.routeContainer}>
           <Text style={styles.titles}>Today's Route</Text>
+        <MapView style={styles.map} />
         <View style={styles.buttonContainer}>
         <TouchableOpacity
             style={styles.button}
@@ -76,6 +80,10 @@ const styles = StyleSheet.create({
     color: "gray",
     width: "100%",
     padding: 10,
+  },
+  map:{
+    width: "80%",
+    height: "20%",
   }
 });
 
