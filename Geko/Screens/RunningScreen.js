@@ -6,7 +6,60 @@ import React, {useState, useEffect, Component} from 'react';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
+const [location , setLocation]= useState(null);
+const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
+const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
+  'Wait, we are fetching you location...'
+);
 
+useEffect( () => {
+  CheckIfLocationEnabled();
+  GetCurrentLocation();
+},[]);
+const GetCurrentLocation = async () => {
+  let { status } = await Location.requestForegroundPermissionsAsync();
+
+  if (status !== 'granted') {
+    Alert.alert(
+      'Permission not granted',
+      'Allow the app to use location service.',
+      [{ text: 'OK' }],
+      { cancelable: false }
+    );
+  }
+
+  let { coords } = await Location.getCurrentPositionAsync();
+  
+  if (coords) {
+    const { latitude, longitude } = coords;
+    setLocation(coords);
+    let response = await Location.reverseGeocodeAsync({
+      latitude,
+      longitude
+    });
+
+    for (let item of response) {
+      let address = `${item.name}, ${item.street}, ${item.postalCode}, ${item.subregion}`;
+
+      setDisplayCurrentAddress(address);
+    }
+  }
+};
+
+const CheckIfLocationEnabled = async () => {
+  let enabled = await Location.hasServicesEnabledAsync();
+
+  if (!enabled) {
+    Alert.alert(
+      'Location Service not enabled',
+      'Please enable your location services to continue',
+      [{ text: 'OK' }],
+      { cancelable: false }
+    );
+  } else {
+    setLocationServiceEnabled(enabled);
+  }
+};
 
 const RunningScreen = ({navigation}) => {
   return (
