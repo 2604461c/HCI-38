@@ -1,12 +1,14 @@
-import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, Alert, Button, Dimensions, StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import { Image, Alert, Button, Dimensions, StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
 import * as Location from 'expo-location';
 import React, {useState, useEffect, Component} from 'react';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
-const [location , setLocation]= useState(null);
+
+const RunningScreen = ({navigation}) => {
+
+  const [location , setLocation]= useState(null);
 const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
   'Wait, we are fetching you location...'
@@ -61,7 +63,7 @@ const CheckIfLocationEnabled = async () => {
   }
 };
 
-const RunningScreen = ({navigation}) => {
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.titlesContainer}>
