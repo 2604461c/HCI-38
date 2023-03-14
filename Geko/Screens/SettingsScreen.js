@@ -1,9 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
 
 const SettingsScreen = ({navigation}) => {
   return (
+    <ImageBackground
+    style={styles.backgroundImage}
+    source={require('../assets/mega_leaves.png')}>
     <KeyboardAvoidingView
     style={styles.container}
     >
@@ -67,10 +70,15 @@ const SettingsScreen = ({navigation}) => {
       </View>
 
     </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    flex:1,
+    resizeMode:'cover',
+  },
   container: {
     flex: 1,
     marginTop: 20,
@@ -80,14 +88,14 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     width: "80%",
-    backgroundColor: "#9BD9F4",
+    backgroundColor: "#64bc94",
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
   },
 
   buttonText: {
-    color: "black",
+    color: "#553721",
     fontSize: 20,
 
   }
@@ -100,7 +108,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titles:{
-    color: 'grey',
+    color: "#553721",
     fontSize: 30,
   },
 });

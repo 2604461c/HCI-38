@@ -1,15 +1,37 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
+import { SelectList } from 'react-native-dropdown-select-list';
 
-const ChangeIntensityScreen = ({navigation}) => {
+const ChangeUIScreen = ({navigation}) => {
+
+  const [selected, setSelected] = React.useState("");
+
+  const data = [
+    {key:'1', value:'High', disabled:true},
+    {key:'2', value:'Medium'},
+    {key:'3', value:'Low'},
+  ]
+
   return (
+    <ImageBackground
+    style={styles.backgroundImage}
+    source={require('../assets/mega_leaves.png')}>
     <KeyboardAvoidingView
     style={styles.container}
     >
       <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Change Intensity screen</Text>
+          <Text style={styles.titles}>Select the level of intensity: </Text>
       </View>
+
+    <View style={styles.dropDownBox}>
+    <SelectList
+        setSelected={(val) => setSelected(val)} 
+        data={data} 
+        save="value"
+    />
+    </View>
+     
      
       <View style={styles.buttonContainer}>
       <TouchableOpacity
@@ -22,10 +44,15 @@ const ChangeIntensityScreen = ({navigation}) => {
       </View>
 
     </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    flex:1,
+    resizeMode:'cover',
+  },
   container: {
     flex: 1,
     marginTop: 20,
@@ -33,18 +60,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
     width: "80%",
-    backgroundColor: "#9BD9F4",
+    backgroundColor: "#64bc94",
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
   },
 
   buttonText: {
-    color: "black",
+    color: "#553721",
     fontSize: 20,
-
   }
   ,
   buttonContainer:{
@@ -55,9 +81,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titles:{
-    color: 'grey',
+    color: "#553721",
     fontSize: 30,
   },
+  titlesContainer:{
+    width: '80%',
+  },
+  dropDownBox:{
+    marginTop: 10,
+    width: '80%',
+  }
 });
 
-export default ChangeIntensityScreen;
+export default ChangeUIScreen;

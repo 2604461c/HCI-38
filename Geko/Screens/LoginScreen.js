@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { Alert, StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Image, ScrollView, ImageBackground } from 'react-native';
 
 //details page where the user enters their personal details.
 //DOB field is just text input rather than date selector
@@ -8,6 +8,10 @@ import { Alert, StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput,
 const LoginScreen = ({navigation}) =>{
 
         return (
+          <ImageBackground
+              style={styles.backgroundImage}
+              source={require('../assets/background_login.png')}
+            >
           <KeyboardAvoidingView
           style={styles.container}
           >
@@ -42,10 +46,15 @@ const LoginScreen = ({navigation}) =>{
 
             
           </KeyboardAvoidingView>
+          </ImageBackground>
         );
       }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    flex:1,
+    resizeMode:'cover',
+  },
     container: {
       flex: 1,
       marginTop: 20,
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
       marginBottom: 25,
     },
     title: {
-      color: 'grey',
+      color: "#553721",
       fontSize: 30,
     },
     inputContainer: {
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
     button: {
       width: "80%",
       height: 40,
-      backgroundColor: "#9BD9F4",
+      backgroundColor: "#64bc94",
       padding: 5,
       borderRadius: 10,
       margin: 5,
@@ -87,7 +96,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       padding: "1%",
-      color: "black",
+      color: "#553721",
       fontSize: 20,
     },
   });

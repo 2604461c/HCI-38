@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, Alert, Button, Dimensions, StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import { Image, Alert, Button, Dimensions, StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
 import * as Location from 'expo-location';
 import React, {useState, useEffect, Component} from 'react';
 import MapView from 'react-native-maps';
@@ -65,6 +65,9 @@ const CheckIfLocationEnabled = async () => {
 
 
   return (
+    <ImageBackground
+    style={styles.backgroundImage}
+    source={require('../assets/normal_leaves.png')}>
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.titlesContainer}>
         <Text style={styles.titles}>Running Screen!</Text>
@@ -83,6 +86,7 @@ const CheckIfLocationEnabled = async () => {
       >
       <MapViewDirections
         origin= {location}
+        mode="BICYCLING"
         destination={destination}
         apikey={GOOGLE_MAPS_APIKEY}
         strokeWidth={3}
@@ -118,38 +122,8 @@ const CheckIfLocationEnabled = async () => {
         <Text style={styles.buttonText}>End Route</Text>
       </TouchableOpacity>
       </View> 
-
-      <Button onPress={() => Alert.alert('Simple Button pressed')} 
-      title="OK!" color="#fffff"/>
   </KeyboardAvoidingView>
-    // <KeyboardAvoidingView
-    // style={styles.container}
-    // >
-    //   <View style={styles.titlesContainer}>
-    //       <Text style={styles.titles}>Running Screen!</Text>
-    //   </View>
-     
-    //   <View style={styles.buttonContainer}>
-    //   <TouchableOpacity
-    //       style={styles.button}
-    //       onPress={() => navigation.navigate("AR")}
-    //   >
-    //     <Text style={styles.buttonText}>AR view</Text>
-    //   </TouchableOpacity>
-    //   </View>
-     
-     
-      // <View style={styles.buttonContainer}>
-      // <TouchableOpacity
-      //     style={styles.button}
-      //     onPress={() => navigation.navigate("Home")}
-      // >
-      //   <Text style={styles.buttonText}>End Route</Text>
-      // </TouchableOpacity>
-
-    //   </View>
-
-    // </KeyboardAvoidingView>
+  </ImageBackground>
   );
 }
 
@@ -158,17 +132,20 @@ const destination = {latitude:55.841200, longitude:-4.289660 };
 const GOOGLE_MAPS_APIKEY = 'AIzaSyCjjPalVfm8ZkkvuBJvuWbgEDjELOAErXA';
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    flex:1,
+    resizeMode:'cover',
+  },
   container: {
     flex: 1,
     marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1e1e1e',
   },
   button: {
     marginTop: 20,
     width: "80%",
-    backgroundColor: "#9BD9F4",
+    backgroundColor: "#64bc94",
     padding: 5,
     borderRadius: 10,
     alignItems: "center",

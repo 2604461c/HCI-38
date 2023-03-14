@@ -1,71 +1,98 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 
 const ConfirmPasswordScreen = ({navigation}) => {
-  return (
-    <KeyboardAvoidingView
-    style={styles.container}
-    >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Confirm password to delete account!</Text>
-      </View>
-     
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("AccountDeleted")}
-      >
-        <Text style={styles.buttonText}>Done</Text>
-      </TouchableOpacity>
-      </View>
+        return (
+          <ImageBackground
+          style={styles.backgroundImage}
+          source={require('../assets/mega_leaves.png')}>
+          <KeyboardAvoidingView
+          style={styles.container}
+          >
+            <View style={styles.titlesContainer}>
+                <Text style={styles.titles}>Confirm password to delete account: </Text>
+            </View>
+            <View style={styles.inputContainer}>
+              <TextInput
+              placeholder = "Password"
+              style={styles.input}
+              />    
+            </View>
 
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Settings")}
-      >
-        <Text style={styles.buttonText}>Back</Text>
-      </TouchableOpacity>
-      </View>
+           {/*back and edit buttons of the profile*/}
+           <View style={styles.buttonsContainer}>
+              {/*buttons themselves*/}
+              <TouchableOpacity 
+              style={styles.button}
+              onPress={() => navigation.navigate("AccountDeleted")}>
+                <Text style={styles.buttonText}> Delete </Text>
+              </TouchableOpacity>
+              <View  style={{flex: 1}}>
+              </View>
+              <TouchableOpacity 
+              style={styles.button}
+              onPress={() => navigation.navigate("Settings")}>
+                <Text style={styles.buttonText}> Back </Text>
+              </TouchableOpacity>
+            </View>
 
-    </KeyboardAvoidingView>
-  );
-}
+          </KeyboardAvoidingView>
+          </ImageBackground>
+        );
+      }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+  backgroundImage:{
+    flex:1,
+    resizeMode:'cover',
   },
-  button: {
-    marginTop: 20,
-    width: "80%",
-    backgroundColor: "#9BD9F4",
-    padding: 5,
-    borderRadius: 10,
-    alignItems: "center",
-  },
+    container: {
+      flex: 1,
+      marginTop: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    titlesContainer: {
+      marginBottom: 7,
+      width: '80%',
+    },
+    
+    inputContainer: {
+      width: '80%',
+    },   
+    input: {
+      color: "#553721",
+      paddingHorizontal: 15,
+      paddingVertical: 10,
+      borderRadius: 10,
+      marginTop: 10,
+    },
 
-  buttonText: {
-    color: "black",
-    fontSize: 20,
+    button: {
+      marginTop: 20,
+      backgroundColor: "#64bc94",
+      padding: 5,
+      borderRadius: 10,
+      alignItems: "center",
+    },
 
-  }
-  ,
-  buttonContainer:{
-    width: "80%",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  titles:{
-    color: 'grey',
-    fontSize: 30,
-  },
-});
+    buttonText: {
+      color: "#553721",
+      fontSize: 20,
+
+    }
+    ,
+    buttonsContainer:{
+      width: '80%',
+      alignItems: "center",
+      flexDirection: 'row',
+
+    },
+    titles:{
+      color: "#553721",
+      fontSize: 30,
+    },
+  });
 
 export default ConfirmPasswordScreen;
