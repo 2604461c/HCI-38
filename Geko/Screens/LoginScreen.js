@@ -51,6 +51,14 @@ const LoginScreen = ({navigation}) =>{
       }
 
 const styles = StyleSheet.create({
+  banner: {
+    marginBottom: 25,
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    borderWidth: 4,
+    borderColor: "#357741",
+  },
   backgroundImage:{
     flex:1,
     resizeMode:'cover',
@@ -73,11 +81,15 @@ const styles = StyleSheet.create({
       marginTop: 30,
     },
     input: {
-      backgroundColor: "white",
+      backgroundColor: '#c1f7d5',
+      width: "100%",
       paddingHorizontal: 15,
       paddingVertical: 10,
       borderRadius: 10,
       marginTop: 10,
+      borderWidth: 3,
+      borderColor: '#357741',
+      elevation: 10,
     },
     buttonContainer:{
       marginTop: 15,
@@ -87,12 +99,15 @@ const styles = StyleSheet.create({
     },
     button: {
       width: "80%",
-      height: 40,
+      height: 45,
       backgroundColor: "#64bc94",
       padding: 5,
       borderRadius: 10,
       margin: 5,
       alignItems: "center",
+      borderWidth: 3,
+      borderColor: "#357741",
+      elevation: 20,
     },
     buttonText: {
       padding: "1%",

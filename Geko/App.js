@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import { ExerciseModeProvider } from './contexts/ExerciseModeContext';
 import LoginScreen from './Screens/LoginScreen';
 import AccountDeletedScreen from './Screens/AccountDeletedScreen';
 import ARScreen from './Screens/ARScreen';
@@ -16,12 +16,13 @@ import SettingsScreen from './Screens/SettingsScreen';
 import SignUpScreen from './Screens/SignUpScreen';
 import UIChoiceScreen from './Screens/UIChoiceScreen';
 import WalkingScreen from './Screens/WalkingScreen';
+import RouteInPogressHomeScreen from './Screens/RouteInProgressHomeScreen';
 import 'expo-dev-client';
 
 const Tab = createBottomTabNavigator();
 export default function App() {
   return(
-    //NavigationBar elements, WIll be updated with default routes and icons in later commits
+    <ExerciseModeProvider>
     <NavigationContainer>
     <Tab.Navigator 
     screenOptions={{
@@ -132,7 +133,15 @@ export default function App() {
               tabBarVisible: false, 
             }}
             />  
+            <Tab.Screen name ="RouteInProgressHome" component={RouteInPogressHomeScreen}
+            options={{
+              tabBarButton: () => null,
+              tabBarStyle: { display: 'none'},
+              tabBarVisible: false, 
+            }}
+            />  
         </Tab.Navigator>
     </NavigationContainer>  
+    </ExerciseModeProvider>
 );
 }

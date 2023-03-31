@@ -10,9 +10,9 @@ const PasswordChangedScreen = ({navigation}) => {
     <KeyboardAvoidingView
     style={styles.container}
     >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Password Changed!</Text>
-      </View>
+        <View style={styles.banner}>
+          <Text style={styles.titles}>Password Changed! </Text>
+        </View>
      
       <View style={styles.buttonContainer}>
       <TouchableOpacity
@@ -21,9 +21,7 @@ const PasswordChangedScreen = ({navigation}) => {
       >
         <Text style={styles.buttonText}>Done</Text>
       </TouchableOpacity>
-
       </View>
-
     </KeyboardAvoidingView>
     </ImageBackground>
   );
@@ -47,12 +45,14 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
+    borderColor: "#357741",
+    borderWidth: 3,
+    elevation: 20,
   },
 
   buttonText: {
     color: "black",
     fontSize: 20,
-
   }
   ,
   buttonContainer:{
@@ -62,9 +62,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
-  titles:{
-    color: 'grey',
+  banner: {
+    marginBottom: 25,
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    borderWidth: 4,
+    borderColor: "#357741",
+  },
+  titles: {
+    color: "#553721",
     fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

@@ -1,70 +1,89 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
+import { StyleSheet, Text, TextInput,Dimensions, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground, SafeAreaView } from 'react-native';
+import { ExerciseModeContext } from '../contexts/ExerciseModeContext';
+import { Camera } from 'expo-camera';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 
 const ARScreen = ({navigation}) => {
+
+  const {exerciseMode} = useContext(ExerciseModeContext);
+  const [hasPermission, setHasPermission] = useState(null);
+
+  const backButton = () => {
+    switch (exerciseMode) {
+      case 'cycling':
+        navigation.navigate('Cycling');
+        break;
+      case 'running':
+        navigation.navigate('Running');
+        break;
+      case 'walking':
+      default:
+        navigation.navigate('Walking');
+        break;
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
   return (
-    <ImageBackground
-    style={styles.backgroundImage}
-    source={require('../assets/normal_leaves.png')}>
-    <KeyboardAvoidingView
-    style={styles.container}
-    >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>AR!</Text>
-      </View>
-     
+    <SafeAreaView style={styles.container}>
+      <Camera style={styles.camera} type={Camera.Constants.Type.back} />
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+        <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Running")}
-      >
-        <Text style={styles.buttonText}>Back</Text>
-      </TouchableOpacity>
-
+          onPress={backButton}
+        >
+          <AntDesign name="back" size={40} color="#2A3439" />
+        </TouchableOpacity>
       </View>
-
-    </KeyboardAvoidingView>
-    </ImageBackground>
+      <StatusBar style="auto" />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage:{
-    flex:1,
-    resizeMode:'cover',
-  },
   container: {
     flex: 1,
-    marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
   },
   button: {
-    marginTop: 20,
-    width: "80%",
+    marginRight: 10,
+    marginBottom: 40,
+    width: Dimensions.get('window').width * 0.33,
+    height: Dimensions.get('window').width * 0.33,
     backgroundColor: "#64bc94",
-    padding: 5,
-    borderRadius: 10,
+    borderRadius: (Dimensions.get('window').width * 0.33) / 2,
     alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#357741",
+    borderWidth: 3,
   },
-
   buttonText: {
     color: "#553721",
     fontSize: 20,
-
-  }
-  ,
-  buttonContainer:{
-    width: "80%",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  titles:{
-    color: "#553721",
-    fontSize: 30,
   },
 });
 

@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
 
 const SignUpScreen = ({navigation}) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email,setEmail] = useState(''); 
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSignUp = () => {
+    navigation.navigate("UIChoice")
+  }
+
   return (
     <ImageBackground
     style={styles.backgroundImage}
@@ -10,16 +19,49 @@ const SignUpScreen = ({navigation}) => {
     <KeyboardAvoidingView
     style={styles.container}
     >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Sign Up!</Text>
+      <View style={styles.banner}>
+          <Text style={styles.titles}>Sign Up</Text>
       </View>
-     
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter username"
+          value={username}
+          onChangeText={setUsername}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter email"
+          value={username}
+          onChangeText={setEmail}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter password"
+          value={username}
+          onChangeText={setPassword}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter confirm password"
+          value={username}
+          onChangeText={setConfirmPassword}
+        />
+      </View>
+
       <View style={styles.buttonContainer}>
       <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("UIChoice")}
+          onPress={handleSignUp}
       >
-        <Text style={styles.buttonText}>Select UI</Text>
+        <Text style={styles.buttonText}>Sign Up!</Text>
       </TouchableOpacity>
 
       </View>
@@ -40,6 +82,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputContainer: {
+    width: "80%",
+    marginTop: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    elevation: 20,
+  },
+  input: {
+    backgroundColor: '#c1f7d5',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginTop: 10,
+    borderWidth: 3,
+    borderColor: '#357741'
+  },
   button: {
     marginTop: 20,
     width: "80%",
@@ -47,24 +105,34 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
+    elevation: 20,
+    borderWidth:3,
+    borderColor: '#357741',
   },
-
   buttonText: {
     color: "black",
     fontSize: 20,
-
   }
   ,
   buttonContainer:{
     width: "80%",
     alignItems: "center",
-    paddingHorizontal: 15,
-    borderRadius: 10,
     marginTop: 10,
   },
-  titles:{
-    color: 'grey',
+  titles: {
+    color: "#553721",
     fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  banner: {
+    marginBottom: 25,
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    borderWidth: 4,
+    borderColor: "#357741",
+    
   },
 });
 

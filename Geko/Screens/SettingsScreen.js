@@ -10,10 +10,10 @@ const SettingsScreen = ({navigation}) => {
     <KeyboardAvoidingView
     style={styles.container}
     >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Settings!</Text>
+      <View style={styles.banner}>
+        <Text style={styles.bannerText}>Settings</Text>
       </View>
-     
+
       <View style={styles.buttonContainer}>
       <TouchableOpacity
           style={styles.button}
@@ -89,17 +89,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "80%",
     backgroundColor: "#64bc94",
-    padding: 5,
-    borderRadius: 10,
+    padding: 15,
+    borderRadius: 20,
     alignItems: "center",
+    borderWidth: 3,
+    borderColor: "#357741",
+    elevation: 20,
   },
-
   buttonText: {
     color: "#553721",
     fontSize: 20,
-
-  }
-  ,
+  },
   buttonContainer:{
     width: "80%",
     alignItems: "center",
@@ -107,10 +107,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
-  titles:{
+  banner: {
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    marginBottom: 20,
+    borderWidth: 4,
+    borderColor: "#357741",
+  },
+  bannerText: {
     color: "#553721",
     fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
-
 export default SettingsScreen;

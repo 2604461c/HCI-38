@@ -10,8 +10,8 @@ const ConfirmPasswordScreen = ({navigation}) => {
           <KeyboardAvoidingView
           style={styles.container}
           >
-            <View style={styles.titlesContainer}>
-                <Text style={styles.titles}>Confirm password to delete account: </Text>
+            <View style={styles.banner}>
+                <Text style={styles.titles}>Confirm password to delete:</Text>
             </View>
             <View style={styles.inputContainer}>
               <TextInput
@@ -68,30 +68,51 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginTop: 10,
     },
-
     button: {
       marginTop: 20,
       backgroundColor: "#64bc94",
+      borderWidth: 3,
+      borderColor: '#357741',
       padding: 5,
+      flex: 1,
       borderRadius: 10,
       alignItems: "center",
+      elevation: 20,
     },
-
     buttonText: {
       color: "#553721",
       fontSize: 20,
-
-    }
-    ,
+    },
+    banner: {
+      backgroundColor: "#64bc94",
+      width: "100%",
+      paddingVertical: 10,
+      marginBottom: 20,
+      borderWidth: 4,
+      borderColor: "#357741",
+    },
     buttonsContainer:{
       width: '80%',
       alignItems: "center",
       flexDirection: 'row',
-
     },
     titles:{
+      width: "100%",
       color: "#553721",
-      fontSize: 30,
+      fontSize: 25,
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+    input: {
+      backgroundColor: '#c1f7d5',
+      width: "100%",
+      paddingHorizontal: 15,
+      paddingVertical: 10,
+      borderRadius: 10,
+      marginTop: 10,
+      borderWidth: 3,
+      borderColor: '#357741',
+      elevation: 20,
     },
   });
 

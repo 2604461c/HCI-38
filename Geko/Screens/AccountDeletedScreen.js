@@ -3,18 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, KeyboardAvoidingView, ImageBackground  } from 'react-native';
 
 const AccountDeletedScreen = ({navigation}) => {
-  
   return (
     <ImageBackground
     style={styles.backgroundImage}
     source={require('../assets/mega_leaves_lizard.png')}>
-
     <KeyboardAvoidingView
     style={styles.container}
     >
-      <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Account Deleted!</Text>
-      </View>
+        <View style={styles.banner}>
+          <Text style={styles.titles}>Account Deleted! </Text>
+        </View>
      
       <View style={styles.buttonContainer}>
       <TouchableOpacity
@@ -24,7 +22,6 @@ const AccountDeletedScreen = ({navigation}) => {
         <Text style={styles.buttonText}>Done</Text>
       </TouchableOpacity>
       </View>
-
     </KeyboardAvoidingView>
     </ImageBackground>
   );
@@ -48,12 +45,14 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
+    borderColor: "#357741",
+    borderWidth: 3,
+    elevation: 20,
   },
 
   buttonText: {
-    color: "#553721",
+    color: "black",
     fontSize: 20,
-
   }
   ,
   buttonContainer:{
@@ -63,10 +62,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
-  titles:{
+  banner: {
+    marginBottom: 25,
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    borderWidth: 4,
+    borderColor: "#357741",
+  },
+  titles: {
     color: "#553721",
     fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
+
 
 export default AccountDeletedScreen;

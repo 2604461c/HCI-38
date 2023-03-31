@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, ImageBackground, SafeAreaView, ScrollView, FlatList, Image } from 'react-native';
+import {Alert, StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, ImageBackground, SafeAreaView, ScrollView, FlatList, Image } from 'react-native';
 import { ExerciseModeContext } from '../contexts/ExerciseModeContext';
 
 const dummyData = [
@@ -72,7 +72,7 @@ const dummyData = [
   // Add more dummy data objects as needed
 ];
 
-const HomeScreen = ({ navigation }) => {
+const RouteInProgressHomeScreen = ({ navigation }) => {
 
   const {exerciseMode} = useContext(ExerciseModeContext);
 
@@ -109,10 +109,10 @@ const HomeScreen = ({ navigation }) => {
             style={styles.todaysRoutebutton}
             onPress={startRoute}
           >
-            <Text style={styles.buttonText}>Start Today's Route! </Text>
+            <Text style={styles.buttonText}> Continue with route! </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={styles.settingsButton}>
+        <TouchableOpacity onPress={() => Alert.alert('Please Stop your current route session before accessing settings!')} style={styles.settingsButton}>
           <Ionicons name="settings" size={40} color="#2A3439" style={styles.settingsIcon} />
         </TouchableOpacity>
       </View>
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     alignContent: "center",
-    color: "#2A3439",
+    color: "#565656",
     fontSize: 20,
   },
   buttonContainer: {
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   todaysRoutebutton: {
-    backgroundColor: "#B90E0A", // with the plan this would be amber if the route was in progress and green if the route is complete
+    backgroundColor: "#C0C0C2", // with the plan this would be amber if the route was in progress and green if the route is complete
     padding: 10,
     borderRadius: 10,
     width: "82%",
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     borderWidth: 3,
-    borderColor: "#8B0000",
+    borderColor: "#828385",
   },
   post: {
     backgroundColor: '#fff',
@@ -227,4 +227,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-export default HomeScreen;
+export default RouteInProgressHomeScreen;

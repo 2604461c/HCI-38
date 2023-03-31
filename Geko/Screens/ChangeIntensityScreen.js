@@ -20,8 +20,10 @@ const ChangeUIScreen = ({navigation}) => {
     <KeyboardAvoidingView
     style={styles.container}
     >
+      <View style={styles.banner}>
       <View style={styles.titlesContainer}>
-          <Text style={styles.titles}>Select the level of intensity: </Text>
+          <Text style={styles.titles}> Intensity level: </Text>
+      </View>
       </View>
 
     <View style={styles.dropDownBox}>
@@ -60,17 +62,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    marginTop: 10,
+    marginTop: 20,
     width: "80%",
     backgroundColor: "#64bc94",
     padding: 5,
     borderRadius: 10,
     alignItems: "center",
+    borderWidth: 3,
+    borderColor: "#357741",
+    elevation: 10,
   },
 
   buttonText: {
     color: "#553721",
     fontSize: 20,
+
   }
   ,
   buttonContainer:{
@@ -80,17 +86,31 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
-  titles:{
-    color: "#553721",
-    fontSize: 30,
+  banner: {
+    marginTop: 20,
+    marginBottom: 5,
+    backgroundColor: "#64bc94",
+    width: "100%",
+    paddingVertical: 10,
+    borderWidth: 4,
+    borderColor: "#357741",
+    marginBottom: 20,
   },
-  titlesContainer:{
-    width: '80%',
-  },
-  dropDownBox:{
+  dropDownBox: {
+    backgroundColor: '#c1f7d5',
+    width: "80%",
+    borderRadius: 10,
     marginTop: 10,
-    width: '80%',
-  }
+    borderWidth: 3,
+    borderColor: '#357741',
+    elevation: 20,
+  },
+  titles: {
+    color: "#553721",
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
 
 export default ChangeUIScreen;
